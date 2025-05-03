@@ -6,17 +6,17 @@ Este repositorio es un experimento para **probar el comportamiento de SWEAgent**
 
 El archivo principal contiene solo dos funciones muy simples:
 
-- `add(a, b)` – retorna la suma de `a` y `b`.
-- `subtract(a, b)` – retorna la resta de `a` y `b`.
+- `sumar(a, b)` – retorna la suma de `a` y `b`.
+- `restar(a, b)` – retorna la resta de `a` y `b`.
 
-El **objetivo del test** fue pedirle a SWEAgent que:
+El **objetivo del test** fue pedirle a SWE-Agent que:
 
-> "Agregue las funciones `multiply(a, b)` y `divide(a, b)`"
+> "We need new division and multiplication functions with their corresponding prints"
 
 De esta manera evaluamos cómo el agente:
 - Interpreta instrucciones sencillas,
 - Modifica código existente,
 - Añade nuevas funciones manteniendo el estilo y estructura original.
 
-## 📁 Estructura
+
 
