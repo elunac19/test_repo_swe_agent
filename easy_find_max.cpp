@@ -1,18 +1,34 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
+#include <optional>
 
-int findMax(const std::vector<int>& nums) {
-    int maxVal = nums[0];
-    for (int i = 0; i < nums.size(); i++) {
-        if (nums[i] > maxVal) {
-            maxVal = nums[i];
-        }
+std::optional<int> findMax(const std::vector<int>& nums) {
+    if (nums.empty()) {
+        return std::nullopt;
     }
-    return maxVal;
+    auto maxIt = std::max_element(nums.begin(), nums.end());
+    return *maxIt;
+
 }
 
 int main() {
     std::vector<int> nums = {3, 5, 1, 8, 2};
-    std::cout << "Max value: " << findMax(nums) << std::endl;
+    auto result = findMax(nums);
+    if (result.has_value()) {
+        std::cout << "Max value: " << result.value() << std::endl;
+    } else {
+        std::cout << "Vector is empty." << std::endl;
+    }
+
+    std::vector<int> emptyVec = {};
+    auto emptyResult = findMax(emptyVec);
+    if (emptyResult.has_value()) {
+        std::cout << "Max value: " << emptyResult.value() << std::endl;
+    } else {
+        std::cout << "Vector is empty." << std::endl;
+    }
+
     return 0;
 }
+
