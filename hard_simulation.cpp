@@ -1,28 +1,52 @@
 #include <iostream>
 #include <vector>
-#include <cstdlib>
+#include <random>
 
-void simulate(int steps) {
-    std::vector<int> states(10, 0);
+class Simulator {
+public:
+    Simulator(int steps, int vector_size, unsigned int seed) : steps(steps), vector_size(vector_size), seed(seed) {
+        std::random_device rd;
+        mt = std::mt19937(rd() + seed);
+        dist = std::uniform_int_distribution<>(0, 1);
+        states.resize(vector_size, 0);
+    }
 
-    for (int i = 0; i < steps; ++i) {
+    void run() {
+        for (int i = 0; i < steps; ++i) {
+            updateState();
+            printState(i);
+        }
+    }
+
+private:
+    void updateState() {
         for (int j = 0; j < states.size(); ++j) {
-            if (rand() % 2 == 0) {
+            if (dist(mt) == 1) {
                 states[j]++;
             } else {
                 states[j]--;
             }
         }
+    }
 
-        std::cout << "Step " << i << ": ";
+    void printState(int step) {
+        std::cout << "Step " << step << ": ";
         for (int val : states) {
             std::cout << val << " ";
         }
         std::cout << std::endl;
     }
-}
+
+    int steps;
+    int vector_size;
+    unsigned int seed;
+    std::vector<int> states;
+    std::mt19937 mt;
+    std::uniform_int_distribution<> dist;
+};
 
 int main() {
-    simulate(5);
+    Simulator sim(5, 10, 0);
+    sim.run();
     return 0;
 }
