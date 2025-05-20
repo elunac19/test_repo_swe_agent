@@ -20,3 +20,23 @@ De esta manera evaluamos cómo el agente:
 
 
 
+## 📦 Installation
+
+Install dependencies with:
+```bash
+pip install -r requirements.txt
+```
+
+## 🚀 Usage
+
+Example usage of the arithmetic functions:
+```python
+result = sumar(5, 3)
+print(result)  # Output: 8
+
+result = restar(10, 4)
+print(result)  # Output: 6
+```
+
+Add new functions as needed following the same pattern.
+
