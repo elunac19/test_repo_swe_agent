@@ -1,7 +1,13 @@
+#ifndef FINDMAX_H
+#define FINDMAX_H
+
 #include <iostream>
 #include <vector>
 
 int findMax(const std::vector<int>& nums) {
+  if (nums.size() == 0) {
+      return -9999999;
+  }
     int maxVal = nums[0];
     for (int i = 0; i < nums.size(); i++) {
         if (nums[i] > maxVal) {
@@ -10,9 +16,4 @@ int findMax(const std::vector<int>& nums) {
     }
     return maxVal;
 }
-
-int main() {
-    std::vector<int> nums = {3, 5, 1, 8, 2};
-    std::cout << "Max value: " << findMax(nums) << std::endl;
-    return 0;
-}
+#endif
