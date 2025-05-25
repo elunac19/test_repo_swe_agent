@@ -59,20 +59,18 @@ private:
     int quickSelectRecursive(std::vector<int>& arr, int left, int right, size_t k);
 };
 
-// Implementation details (can be in a .cpp file, but for a header-only example, we'll put it here)
-
 inline int RandomSelector::partition(std::vector<int>& arr, int left, int right, int pivotIndex) {
-    int pivotValue = arr[pivotIndex];
-    std::swap(arr[pivotIndex], arr[right]); // Move pivot to end
-    int storeIndex = left;
-    for (int i = left; i < right; ++i) {
-        if (arr[i] < pivotValue) {
-            std::swap(arr[storeIndex], arr[i]);
-        }
-        storeIndex++;
-    }
-    std::swap(arr[right], arr[storeIndex]); // Move pivot to its final sorted position
-    return storeIndex;
+  int pivotValue = arr[pivotIndex];
+  std::swap(arr[pivotIndex], arr[right]); // Move pivot to end
+  int storeIndex = left;
+  for (int i = left; i < right; ++i) {
+      if (arr[i] < pivotValue) {
+        std::swap(arr[storeIndex], arr[i]);
+        storeIndex++; // <-- FIXED: Increment storeIndex ONLY when a smaller element is found and swapped.
+      }
+  }
+  std::swap(arr[right], arr[storeIndex]); // Move pivot to its final sorted position
+  return storeIndex;
 }
 
 inline int RandomSelector::choosePivotIndex(std::vector<int>& arr, int left, int right) {
