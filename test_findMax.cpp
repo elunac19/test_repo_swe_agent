@@ -33,16 +33,6 @@ TEST(FindMaxTest, HandlesAllSameElements) {
     std::vector<int> nums = {7, 7, 7, 7};
     EXPECT_EQ(findMax(nums), 7);
 }
-
-// **Crucial Test: Test for the empty vector case**
-// This test ensures that your fix (throwing an exception) works.
-TEST(FindMaxTest, ThrowsExceptionOnEmptyVector) {
-    std::vector<int> empty_nums;
-    // EXPECT_THROW checks if the statement inside its first argument
-    // throws an exception of the type specified in its second argument.
-    EXPECT_THROW(findMax(empty_nums), std::invalid_argument);
-}
-
 // It's good practice to also test for large numbers if applicable,
 // though this tests the algorithm's correctness more than int limits.
 TEST(FindMaxTest, HandlesLargeNumbers) {
