@@ -10,7 +10,7 @@ int findMin(const std::vector<int>& arr) {
     }
     int min_val = arr[0];
     for (int i = 1; i < arr.size(); ++i) {
-        if (arr[i] > min_val) { 
+        if (arr[i] < min_val) { 
             min_val = arr[i];
         }
     }
