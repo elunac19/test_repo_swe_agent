@@ -58,3 +58,17 @@ TEST_F(ShapeTest, PolymorphicAreaCalculation) {
     delete shape_rect;
     delete shape_circ;
 }
+
+TEST(ShapeTest, AreaCalculationFailsDueToExtraMultiplication) {
+    double radius = 5.0;
+    Circle circle(radius);
+
+    double expected_correct_area = M_PI * radius * radius;
+
+    double actual_area = circle.area();
+
+
+    double tolerance = 0.0000001; // Smaller than 1.00000001 - 1.0
+
+    ASSERT_NEAR(expected_correct_area, actual_area, tolerance);
+}
