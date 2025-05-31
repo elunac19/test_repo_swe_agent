@@ -1,5 +1,5 @@
 #include "gtest/gtest.h" // GoogleTest header
-#include "medium_area_calculator.cpp"
+#include "area_calc.h"     // Your header file with the area_calc function
 
 // Test Fixture for Shape tests (optional, but good practice for grouping)
 class ShapeTest : public ::testing::Test {

@@ -1,3 +1,6 @@
+#ifndef AREA_CALC_H
+#define AREA_CALC_H
+
 #include <iostream>
 #include <cmath> // For M_PI, a more precise value of pi
 
@@ -49,3 +52,4 @@ public:
         return M_PI * radius * radius;
     }
 };
+#endif 
