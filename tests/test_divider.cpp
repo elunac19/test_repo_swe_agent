@@ -25,3 +25,18 @@ TEST(DividerTest, OneElementVector) {
     std::vector<double> result = d.divideByTotal();
     EXPECT_NEAR(result[0], expected[0], 1e-6);
 }
+
+TEST(DividerTest, FailsWhenTotalIsZeroPositiveNegative) {
+    EXPECT_THROW({
+        Divider d({5, -5});
+        d.divideByTotal();
+    }, std::runtime_error);
+}
+
+
+TEST(DividerTest, FailsWhenAllZeros) {
+    EXPECT_THROW({
+        Divider d({0, 0, 0});
+        d.divideByTotal();
+    }, std::runtime_error);
+}

@@ -17,6 +17,10 @@ public:
     std::vector<double> divideByTotal() const {
         int total = std::accumulate(values.begin(), values.end(), 0);
 
+        if (total == 0) {
+            throw std::runtime_error("Sum of elements is zero; division undefined.");
+        }
+
         std::vector<double> result;
         for (int val : values) {
             result.push_back(static_cast<double>(val) / total);
