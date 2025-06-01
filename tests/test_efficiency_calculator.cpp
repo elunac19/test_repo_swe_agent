@@ -19,3 +19,24 @@ TEST(EfficiencyCalculatorTest, HandlesFractionalEfficiency) {
     std::vector<double> expected = {0.5, 0.5};
     EXPECT_EQ(ec.calculateEfficiency(), expected);
 }
+
+TEST(EfficiencyCalculatorTest, ThrowsOnZeroInputSingle) {
+    EXPECT_THROW({
+        EfficiencyCalculator ec({0.0}, {10.0});
+        ec.calculateEfficiency();
+    }, std::runtime_error); 
+}
+
+TEST(EfficiencyCalculatorTest, ThrowsOnZeroInputMixed) {
+    EXPECT_THROW({
+        EfficiencyCalculator ec({100.0, 0.0, 200.0}, {90.0, 10.0, 180.0});
+        ec.calculateEfficiency();
+    }, std::runtime_error);
+}
+
+TEST(EfficiencyCalculatorTest, ThrowsOnMultipleZeros) {
+    EXPECT_THROW({
+        EfficiencyCalculator ec({0.0, 0.0, 50.0}, {0.0, 10.0, 45.0});
+        ec.calculateEfficiency();
+    }, std::runtime_error);
+}

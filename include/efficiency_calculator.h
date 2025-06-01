@@ -17,7 +17,10 @@ public:
     std::vector<double> calculateEfficiency() const {
         std::vector<double> efficiencies;
         for (size_t i = 0; i < input.size(); ++i) {
-            efficiencies.push_back(output[i] / input[i]);  
+            if (input[i] == 0.0) {
+                throw std::runtime_error("Input energy cannot be zero.");
+            }
+            efficiencies.push_back(output[i] / input[i]);
         }
         return efficiencies;
     }
