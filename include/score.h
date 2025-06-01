@@ -36,7 +36,7 @@ public:
         int max = maxScore();
         if (max == min) return 1.0;
 
-        return static_cast<double>(scores[index] < min) / (max - min);  
+        return static_cast<double>(scores[index] - min) / (max - min);  
     }
 
 private:

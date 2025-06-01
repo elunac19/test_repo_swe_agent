@@ -32,3 +32,14 @@ TEST(ScoreAnalyzerTest, NormalizedValueOutOfRangeLow) {
     const_cast<std::vector<int>&>(reinterpret_cast<const std::vector<int>&>(sa)).at(1) = -50;
     EXPECT_GE(sa.normalizedScore(1), 0.0);
 }
+
+TEST(ScoreAnalyzerTest, NormalizedValueInMiddleRange) {
+    ScoreAnalyzer sa({0, 50, 100});
+    EXPECT_DOUBLE_EQ(sa.normalizedScore(1), 0.5);
+}
+
+
+TEST(ScoreAnalyzerTest, NormalizedValueAtMax) {
+    ScoreAnalyzer sa({10, 20, 30});
+    EXPECT_DOUBLE_EQ(sa.normalizedScore(2), 1.0);
+}
