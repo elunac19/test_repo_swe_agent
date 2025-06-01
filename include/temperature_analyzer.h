@@ -5,6 +5,7 @@
 #include <stdexcept>
 #include <algorithm>
 #include <cmath>
+#include <limits>
 
 class TemperatureAnalyzer {
 public:
@@ -15,11 +16,23 @@ public:
     }
 
     double getAverage() const {
-        double sum = 0.0;
+        double max_abs = 0.0;
         for (double t : temperatures) {
-            sum += t;
+            if (!std::isfinite(t)) {
+                throw std::runtime_error("Non-finite value in temperature list.");
+            }
+            max_abs = std::max(max_abs, std::fabs(t));
         }
-        return sum / temperatures.size();
+
+        if (max_abs == 0.0) return 0.0;
+
+        double scaled_sum = 0.0;
+        for (double t : temperatures) {
+            scaled_sum += t / max_abs;
+        }
+
+        double average = (scaled_sum / temperatures.size()) * max_abs;
+        return average;
     }
 
     double getMin() const {
@@ -31,6 +44,10 @@ public:
     }
 
     size_t countAbove(double threshold) const {
+        if (std::isnan(threshold)) {
+            throw std::invalid_argument("Threshold cannot be NaN.");
+        }
+
         size_t count = 0;
         for (double t : temperatures) {
             if (t > threshold) {

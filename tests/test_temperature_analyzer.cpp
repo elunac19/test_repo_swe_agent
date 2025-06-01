@@ -24,3 +24,14 @@ TEST(TemperatureAnalyzerTest, CountsAboveThresholdCorrectly) {
     TemperatureAnalyzer ta({10.0, 20.0, 30.0});
     EXPECT_EQ(ta.countAbove(15.0), 2);
 }
+
+// Test con valores extremos que pueden causar overflow 
+TEST(TemperatureAnalyzerTest, HandlesExtremeValuesAverage) {
+    TemperatureAnalyzer ta({1e308, 1e308});  
+    EXPECT_TRUE(std::isfinite(ta.getAverage()));
+}
+// Test con NaN como threshold 
+TEST(TemperatureAnalyzerTest, ThrowsOnNaNThreshold) {
+    TemperatureAnalyzer ta({15.0, 25.0, 35.0});
+    EXPECT_THROW(ta.countAbove(std::nan("")), std::invalid_argument);
+}
