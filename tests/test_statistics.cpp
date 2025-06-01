@@ -26,3 +26,18 @@ TEST(StatisticsTest, SingleElement) {
 TEST(StatisticsTest, ThrowsOnEmptyVector) {
     EXPECT_THROW(Statistics stats({}), std::invalid_argument);
 }
+
+
+// Varianza (esta fallará porque está mal el denominador)
+TEST(StatisticsTest, FailsOnSampleVariance) {
+    Statistics stats({1.0, 2.0, 3.0});
+    // Esperamos varianza muestral: 1.0
+    EXPECT_DOUBLE_EQ(stats.variance(), 1.0);
+}
+
+// Desviación estándar (fallará por el mismo bug)
+TEST(StatisticsTest, FailsOnStandardDeviation) {
+    Statistics stats({1.0, 2.0, 3.0});
+    // std::sqrt(1.0) == 1.0
+    EXPECT_DOUBLE_EQ(stats.standardDeviation(), 1.0);
+}

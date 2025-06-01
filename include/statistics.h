@@ -32,6 +32,10 @@ public:
     }
 
     double variance() const {
+        if (values.size() == 1) {
+            return 0.0;
+        }
+
         double avg = mean();
         double var = 0.0;
 
@@ -39,7 +43,7 @@ public:
             var += std::pow(v - avg, 2);
         }
 
-        return var / values.size();  // ❌ BUG: debería ser / (values.size() - 1) para sample variance
+        return var / (values.size() - 1);
     }
 
     double standardDeviation() const {
