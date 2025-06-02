@@ -77,6 +77,12 @@ TEST_F(PokemonTest, ReceivesDamageCorrectly) {
     EXPECT_EQ(squirtle->get_current_hp(), initial_hp - 10);
 }
 
+TEST_F(PokemonTest, HPDoesNotGoNegative) {
+    squirtle->take_damage(1000); // Excessive damage
+    EXPECT_EQ(squirtle->get_current_hp(), 0);
+    EXPECT_TRUE(squirtle->is_fainted());
+}
+
 TEST_F(PokemonTest, CannotHealFaintedPokemon) {
     squirtle->take_damage(squirtle->get_current_hp());
     

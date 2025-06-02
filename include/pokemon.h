@@ -41,6 +41,7 @@ public:
     // Common methods
     virtual void take_damage(int damage) {
         current_hp -= damage;
+        if (current_hp < 0) current_hp = 0;
     }
 
     virtual void heal(int amount) {

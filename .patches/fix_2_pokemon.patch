@@ -1,0 +1,12 @@
+diff --git a/include/pokemon.h b/include/pokemon.h
+index 10d788a..2f7e47f 100644
+--- a/include/pokemon.h
++++ b/include/pokemon.h
+@@ -40,6 +40,7 @@ public:
+     // Common methods
+     virtual void take_damage(int damage) {
+         current_hp -= damage;
++        if (current_hp < 0) current_hp = 0;
+     }
+ 
+     virtual void heal(int amount) {
