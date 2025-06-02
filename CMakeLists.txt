@@ -11,6 +11,9 @@ function(add_gtest name src)
     add_executable(${name} ${src})
     target_link_libraries(${name} PRIVATE GTest::gtest_main)
     add_test(NAME ${name} COMMAND ${name})
+    
+    add_custom_target(build_${name} COMMAND ${CMAKE_COMMAND} --build ${CMAKE_BINARY_DIR} --target ${name} DEPENDS ${name} WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
+
 endfunction()
 
 add_gtest(findMax_test tests/test_findMax.cpp)
