@@ -1,6 +1,7 @@
 #include "gtest/gtest.h" // GoogleTest header
 #include "area_calc.h"     // Your header file with the area_calc function
-
+#include <iostream>
+#include <iomanip>
 // Test Fixture for Shape tests (optional, but good practice for grouping)
 class ShapeTest : public ::testing::Test {
 protected:
@@ -59,7 +60,7 @@ TEST_F(ShapeTest, PolymorphicAreaCalculation) {
     delete shape_circ;
 }
 
-TEST(ShapeTest, AreaCalculationFailsDueToExtraMultiplication) {
+TEST_F(ShapeTest, AreaCalculationFailsDueToExtraMultiplication) {
     double radius = 5.0;
     Circle circle(radius);
 
