@@ -1,0 +1,14 @@
+diff --git a/include/pokemon.h b/include/pokemon.h
+index a6c518e..10d788a 100644
+--- a/include/pokemon.h
++++ b/include/pokemon.h
+@@ -43,6 +43,9 @@ public:
+     }
+ 
+     virtual void heal(int amount) {
++        if (is_fainted()) {
++            return;
++        }
+         current_hp += amount;
+     }
+ 

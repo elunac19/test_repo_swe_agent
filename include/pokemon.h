@@ -44,6 +44,9 @@ public:
     }
 
     virtual void heal(int amount) {
+        if (is_fainted()) {
+            return;
+        }
         current_hp += amount;
     }
 

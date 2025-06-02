@@ -77,6 +77,18 @@ TEST_F(PokemonTest, ReceivesDamageCorrectly) {
     EXPECT_EQ(squirtle->get_current_hp(), initial_hp - 10);
 }
 
+TEST_F(PokemonTest, CannotHealFaintedPokemon) {
+    squirtle->take_damage(squirtle->get_current_hp());
+    
+    EXPECT_TRUE(squirtle->is_fainted());
+    EXPECT_EQ(squirtle->get_current_hp(), 0);
+    
+    squirtle->heal(20);
+    
+    EXPECT_TRUE(squirtle->is_fainted());
+    EXPECT_EQ(squirtle->get_current_hp(), 0);
+}
+
 TEST_F(PokemonTest, HealingWorks) {
     squirtle->take_damage(20);
     int hp_after_damage = squirtle->get_current_hp();
