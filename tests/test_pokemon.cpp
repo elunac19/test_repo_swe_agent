@@ -102,6 +102,11 @@ TEST_F(PokemonTest, HealingWorks) {
     EXPECT_EQ(squirtle->get_current_hp(), hp_after_damage + 10);
 }
 
+TEST_F(PokemonTest, HealingDoesNotExceedMax) {
+    squirtle->heal(1000); // Excessive healing
+    EXPECT_EQ(squirtle->get_current_hp(), squirtle->get_max_hp());
+}
+
 TEST_F(PokemonTest, BasicAttackDealsDamage) {
     int initial_hp = bulbasaur->get_current_hp();
 

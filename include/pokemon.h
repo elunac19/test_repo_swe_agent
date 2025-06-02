@@ -49,6 +49,7 @@ public:
             return;
         }
         current_hp += amount;
+        if (current_hp > max_hp) current_hp = max_hp;
     }
 
     virtual bool is_fainted() const {

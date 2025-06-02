@@ -1,0 +1,12 @@
+diff --git a/include/pokemon.h b/include/pokemon.h
+index 2f7e47f..be850f5 100644
+--- a/include/pokemon.h
++++ b/include/pokemon.h
+@@ -48,6 +48,7 @@ public:
+             return;
+         }
+         current_hp += amount;
++        if (current_hp > max_hp) current_hp = max_hp;
+     }
+ 
+     virtual bool is_fainted() const {
