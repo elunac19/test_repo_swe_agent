@@ -39,34 +39,34 @@ endef
 
 # BUILDING ------------------------------------------------------------
 build_findMax:
-	cmake --build build --target findMax_test
+	$(call clean_and_build,findMax_test)
 
 build_findMin:
-	cmake --build build --target findMin_test
+	$(call clean_and_build,findMin_test)
 
 build_randomSelection:
-	cmake --build build --target randomSelection_test
+	$(call clean_and_build,randomSelection_test)
 
 build_areaCalc:
-	cmake --build build --target areaCalc_test
+	$(call clean_and_build,areaCalc_test)
 
 build_pokemon:
-	cmake --build build --target pokemon_test
+	$(call clean_and_build,pokemon_test)
 
 build_statistics:
-	cmake --build build --target statistics_test
+	$(call clean_and_build,statistics_test)
 
 build_temperatureAnalyzer:
-	cmake --build build --target temperatureAnalyzer_test
+	$(call clean_and_build,temperatureAnalyzer_test)
 
 build_efficiencyCalculator:
-	cmake --build build --target efficiencyCalculator_test
+	$(call clean_and_build,efficiencyCalculator_test)
 
 build_score:
-	cmake --build build --target score_test
+	$(call clean_and_build,score_test)
 
 build_divider:
-	cmake --build build --target divider_test
+	$(call clean_and_build,divider_test)
 
 # TESTING ------------------------------------------------------------
 test_pokemon:
