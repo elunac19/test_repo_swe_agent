@@ -99,3 +99,7 @@ test_score:
 test_divider:
 	ctest --test-dir build -V -R divider_test
 
+run_pokemon:
+	rm -rf build/pokemon
+	g++ -Iinclude src/pokemon.cpp -o build/pokemon -std=c++11
+	./build/pokemon
