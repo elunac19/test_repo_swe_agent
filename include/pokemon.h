@@ -84,7 +84,7 @@ public:
 
     void attack_target(Pokemon& target) override {
         double multiplier = calculate_type_multiplier(target.get_type());
-        int base_damage = target.get_defense() - attack;
+        int base_damage = attack - target.get_defense();
         if (base_damage < 1) base_damage = 1;
 
         int final_damage = static_cast<int>(std::round(base_damage * multiplier));
@@ -127,7 +127,7 @@ public:
 
     void attack_target(Pokemon& target) override {
         double multiplier = calculate_type_multiplier(target.get_type());
-        int base_damage = target.get_defense() - attack; 
+        int base_damage = attack - target.get_defense(); 
         if (base_damage < 1) base_damage = 1;
 
         int final_damage = static_cast<int>(std::round(base_damage * multiplier));
@@ -170,7 +170,7 @@ public:
 
     void attack_target(Pokemon& target) override {
         double multiplier = calculate_type_multiplier(target.get_type());
-        int base_damage = target.get_defense() - attack; 
+        int base_damage = attack - target.get_defense(); 
         if (base_damage < 1) base_damage = 1;
 
         int final_damage = static_cast<int>(std::round(base_damage * multiplier));

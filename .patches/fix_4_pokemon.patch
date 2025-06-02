@@ -1,0 +1,31 @@
+diff --git a/include/pokemon.h b/include/pokemon.h
+index be850f5..5e79dc0 100644
+--- a/include/pokemon.h
++++ b/include/pokemon.h
+@@ -83,7 +83,7 @@ public:
+ 
+     void attack_target(Pokemon& target) override {
+         double multiplier = calculate_type_multiplier(target.get_type());
+-        int base_damage = target.get_defense() - attack;
++        int base_damage = attack - target.get_defense();
+         if (base_damage < 1) base_damage = 1;
+ 
+         int final_damage = static_cast<int>(std::round(base_damage * multiplier));
+@@ -126,7 +126,7 @@ public:
+ 
+     void attack_target(Pokemon& target) override {
+         double multiplier = calculate_type_multiplier(target.get_type());
+-        int base_damage = target.get_defense() - attack; 
++        int base_damage = attack - target.get_defense(); 
+         if (base_damage < 1) base_damage = 1;
+ 
+         int final_damage = static_cast<int>(std::round(base_damage * multiplier));
+@@ -169,7 +169,7 @@ public:
+ 
+     void attack_target(Pokemon& target) override {
+         double multiplier = calculate_type_multiplier(target.get_type());
+-        int base_damage = target.get_defense() - attack; 
++        int base_damage = attack - target.get_defense(); 
+         if (base_damage < 1) base_damage = 1;
+ 
+         int final_damage = static_cast<int>(std::round(base_damage * multiplier));

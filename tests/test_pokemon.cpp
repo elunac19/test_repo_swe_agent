@@ -145,6 +145,28 @@ TEST_F(PokemonTest, SuperEffectiveAttackDealsMoreDamage) {
     EXPECT_GT(damage_super, damage_not_effective);
 }
 
+TEST_F(PokemonTest, DamageCalculationIsCorrect) {
+    // Create Pokémon with known stats for precise damage calculation
+    WaterPokemon attacker("TestAttacker", 5, 50, 30, 20);  // 30 attack
+    FirePokemon victim("TestVictim", 5, 50, 25, 15);       // 15 defense
+    
+    int initial_hp = victim.get_current_hp();
+    
+    std::ostringstream buffer;
+    std::streambuf* orig = std::cout.rdbuf(buffer.rdbuf());
+    
+    attacker.attack_target(victim);
+    
+    std::cout.rdbuf(orig);
+    
+    int damage_dealt = initial_hp - victim.get_current_hp();
+    int expected_base_damage = 30 - 15; // attack - defense = 15
+    double type_multiplier = 2.0; // Water vs Fire
+    int expected_damage = static_cast<int>(expected_base_damage * type_multiplier); // 30
+    
+    EXPECT_EQ(damage_dealt, expected_damage);
+}
+
 // =================== POLYMORPHISM TESTS ===================
 
 TEST_F(PokemonTest, PolymorphismWorks) {
