@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include <memory>
+#include <cmath>
 
 // Enum for Pokémon types
 enum class PokemonType {
@@ -40,12 +41,10 @@ public:
     // Common methods
     virtual void take_damage(int damage) {
         current_hp -= damage;
-        if (current_hp < 0) current_hp = 0;
     }
 
     virtual void heal(int amount) {
         current_hp += amount;
-        if (current_hp > max_hp) current_hp = max_hp;
     }
 
     virtual bool is_fainted() const {
@@ -70,7 +69,6 @@ public:
         std::cout << "Defense: " << defense << std::endl;
     }
 };
-
 // ---
 
 // Water-type Pokémon
@@ -81,10 +79,10 @@ public:
 
     void attack_target(Pokemon& target) override {
         double multiplier = calculate_type_multiplier(target.get_type());
-        int base_damage = attack - target.get_defense();
+        int base_damage = target.get_defense() - attack;
         if (base_damage < 1) base_damage = 1;
 
-        int final_damage = static_cast<int>(base_damage * multiplier);
+        int final_damage = static_cast<int>(std::round(base_damage * multiplier));
 
         std::cout << name << " uses Water Gun on " << target.get_name() << "!" << std::endl;
         target.take_damage(final_damage);
@@ -114,7 +112,6 @@ public:
         std::cout << "Ability: " << get_special_ability() << std::endl;
     }
 };
-
 // ---
 
 // Grass-type Pokémon
@@ -125,10 +122,10 @@ public:
 
     void attack_target(Pokemon& target) override {
         double multiplier = calculate_type_multiplier(target.get_type());
-        int base_damage = attack - target.get_defense();
+        int base_damage = target.get_defense() - attack; 
         if (base_damage < 1) base_damage = 1;
 
-        int final_damage = static_cast<int>(base_damage * multiplier);
+        int final_damage = static_cast<int>(std::round(base_damage * multiplier));
 
         std::cout << name << " uses Vine Whip on " << target.get_name() << "!" << std::endl;
         target.take_damage(final_damage);
@@ -158,7 +155,6 @@ public:
         std::cout << "Ability: " << get_special_ability() << std::endl;
     }
 };
-
 // ---
 
 // Fire-type Pokémon
@@ -169,10 +165,10 @@ public:
 
     void attack_target(Pokemon& target) override {
         double multiplier = calculate_type_multiplier(target.get_type());
-        int base_damage = attack - target.get_defense();
+        int base_damage = target.get_defense() - attack; 
         if (base_damage < 1) base_damage = 1;
 
-        int final_damage = static_cast<int>(base_damage * multiplier);
+        int final_damage = static_cast<int>(std::round(base_damage * multiplier));
 
         std::cout << name << " uses Ember on " << target.get_name() << "!" << std::endl;
         target.take_damage(final_damage);
@@ -202,7 +198,6 @@ public:
         std::cout << "Ability: " << get_special_ability() << std::endl;
     }
 };
-
 // ---
 
 // Utility class to handle battles
